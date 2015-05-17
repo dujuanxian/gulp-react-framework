@@ -1,11 +1,7 @@
 {
   "name": "gulp-react-framework",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "app/scripts/app.js",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/dujuanxian/gulp-react-framework.git"
@@ -19,5 +15,37 @@
   "bugs": {
     "url": "https://github.com/dujuanxian/gulp-react-framework/issues"
   },
-  "homepage": "https://github.com/dujuanxian/gulp-react-framework#readme"
+  "homepage": "https://github.com/dujuanxian/gulp-react-framework#readme",
+  "dependencies": {
+    "browserify": "^10.2.0",
+    "browserify-shim": "^3.8.6",
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-jest": "^0.4.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-ruby-sass": "^1.0.5",
+    "gulp-shell": "^0.4.1",
+    "gulp-size": "^1.2.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-webserver": "^0.9.1",
+    "path": "^0.11.14",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim",
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ]
+    ]
+  },
+  "browserify-shim": {}
 }
