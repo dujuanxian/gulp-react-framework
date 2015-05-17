@@ -1,0 +1,23 @@
+{
+  "name": "gulp-react-framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dujuanxian/gulp-react-framework.git"
+  },
+  "keywords": [
+    "react",
+    "gulp"
+  ],
+  "author": "dujuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dujuanxian/gulp-react-framework/issues"
+  },
+  "homepage": "https://github.com/dujuanxian/gulp-react-framework#readme"
+}
