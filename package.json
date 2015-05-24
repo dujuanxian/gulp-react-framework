@@ -21,6 +21,7 @@
     "browserify-shim": "^3.8.6",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
+    "gulp-babel": "^5.1.0",
     "gulp-jest": "^0.4.0",
     "gulp-load-plugins": "^0.10.0",
     "gulp-ruby-sass": "^1.0.5",
@@ -47,5 +48,8 @@
       ]
     ]
   },
-  "browserify-shim": {}
+  "browserify-shim": {},
+  "devDependencies": {
+    "babelify": "^6.1.1"
+  }
 }

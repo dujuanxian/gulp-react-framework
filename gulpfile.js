@@ -11,6 +11,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var shell = require('gulp-shell');
+var babelify = require('babelify');
 var sourceFile = './app/scripts/app.js';
 var destFolder = './dist/scripts';
 var destFileName = 'app.js';
@@ -25,13 +26,15 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-    var bundler = watchify(browserify({
-        entries: [sourceFile],
-        insertGlobals: true,
-        cache: {},
-        packageCache: {},
-        fullPaths: true
-    }));
+    var bundler = watchify(
+        browserify({
+            entries: [sourceFile],
+            insertGlobals: true,
+            cache: {},
+            packageCache: {},
+            fullPaths: true
+        }).transform(babelify)
+    );
 
     bundler.on('update', rebundle);
 
@@ -95,13 +98,6 @@ gulp.task('server', function () {
 
 gulp.task('home', function() {
     gulp.src(".").pipe(shell(['open http://localhost:9000']));
-});
-
-gulp.task('watch', ['html', 'bundle', 'server', 'home'], function () {
-    gulp.watch('app/*.html', ['html']);
-    gulp.watch('app/styles/**/*.scss', ['styles']);
-    //gulp.watch('app/images/**/*', ['images']);
-    //gulp.watch('app/fonts/**/*', ['fonts']);
 });
 
 gulp.task('build', ['html', 'bundle', 'images', 'fonts']);
