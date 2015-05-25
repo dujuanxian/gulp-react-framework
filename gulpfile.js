@@ -100,6 +100,6 @@ gulp.task('home', function() {
     gulp.src(".").pipe(shell(['open http://localhost:9000']));
 });
 
-gulp.task('build', ['html', 'bundle', 'images', 'fonts']);
+gulp.task('build', ['html', 'bundle', 'images', 'fonts', 'server', 'home']);
 
 gulp.task('default', ['clean', 'build', 'jest' ]);
