@@ -14,6 +14,7 @@ var shell = require('gulp-shell');
 var babelify = require('babelify');
 var mocha = require('gulp-mocha');
 var babel = require('babel/register');
+var jsdom = require('./test/lib/jsdom.js');
 
 var sourceFile = './app/scripts/app.js';
 var destFolder = './dist/scripts';
@@ -74,10 +75,10 @@ gulp.task('images', function () {
 });
 
 gulp.task('mocha', function() {
-    return gulp.src(['test/**/*Specs.js'])
+    return gulp.src(['test/**/*Specs.js', '!test/lib/*.js'])
         .pipe(mocha({
             compilers: {
-                js: babel
+                js: [jsdom, babel]
             }
         }))
 });
@@ -114,4 +115,4 @@ gulp.task('home', function() {
 
 gulp.task('build', ['html', 'bundle', 'images', 'fonts', 'server', 'home']);
 
-gulp.task('default', ['clean', 'build', 'jest' ]);
+gulp.task('default', ['clean', 'build', 'mocha' ]);
