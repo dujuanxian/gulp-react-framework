@@ -6,37 +6,42 @@ const Login = React.createClass({
     getInitialState() {
         return {
             username: '',
-            password: ''
+            password: '',
+            showErrorMsg: false
         };
     },
 
     render() {
         return (
-            <form ref="form">
-                <input
-                    ref="username"
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    autofocus = "autofocus"
-                    value={this.state.username}
-                    onChange={this.onUsernameChange}
-                />
-                <input
-                    ref="password"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.onPasswordChange}
-                />
-                <button
-                    ref="button"
-                    type="submit"
-                    name="submit">
-                    Login
-                </button>
-            </form>
+            <div>
+                {this.state.showErrorMsg? <p ref="errorMsg">Your username or password is invalid</p> : null}
+
+                <form ref="form" onSubmit={this.handleSubmit}>
+                    <input
+                        ref="username"
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        autofocus = "autofocus"
+                        value={this.state.username}
+                        onChange={this.onUsernameChange}
+                    />
+                    <input
+                        ref="password"
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={this.onPasswordChange}
+                    />
+                    <button
+                        ref="button"
+                        type="submit"
+                        name="submit">
+                        Login
+                    </button>
+                </form>
+            </div>
         );
     },
 
@@ -48,6 +53,13 @@ const Login = React.createClass({
         this.setState({password: e.target.value});
     },
 
+    handleSubmit(e) {
+        e.preventDefault();
+        if (this.state.username.length !== 0 && this.state.password.length !== 0) {
+            LoginAction.submit();
+        } else {
+            this.setState({showErrorMsg: true});
+        }
     }
 });
 

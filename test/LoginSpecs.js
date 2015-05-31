@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import React from 'react/addons';
 
 import Login from '../app/scripts/Login'
+import LoginAction from '../app/scripts/actions/LoginAction'
 
 const TestUtils = React.addons.TestUtils;
 
@@ -38,4 +39,21 @@ describe('Login', function() {
         });
     });
 
+    context('#handleSubmit', () => {
+        it('should call submit action when username and password is valid', () => {
+            const loginAction = sinon.stub(LoginAction, 'submit');
+
+            TestUtils.Simulate.change(username.getDOMNode(), {target: {value: 'valid username'}});
+            TestUtils.Simulate.change(password.getDOMNode(), {target: {value: 'valid password'}});
+
+            TestUtils.Simulate.submit(LoginComponent.refs.form);
+
+            loginAction.called.should.be.true;
+        });
+
+        it('should show error msg when username or password is invalid', () => {
+            TestUtils.Simulate.submit(LoginComponent.refs.form);
+            LoginComponent.refs.errorMsg.getDOMNode().textContent.should.be.eql('Your username or password is invalid');
+        });
+    });
 });
