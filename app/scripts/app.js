@@ -1,13 +1,29 @@
-'use strict';
-
 import React from 'react';
-import Login from './Login.jsx';
+import Reflux from 'reflux';
 
-let App = React.createClass({
+import LoginStore from './stores/LoginStore';
+import Login from './Login.jsx';
+import Welcome from './Welcome.jsx';
+
+const App = React.createClass({
+    mixins: [
+        Reflux.listenTo(LoginStore, 'onLoggedIn')
+    ],
+
+    getInitialState() {
+        return {loggedIn: false};
+    },
+
     render() {
         return (
-            <Login/>
-        )
+            !this.state.loggedIn ?
+                <Login /> :
+                <Welcome />
+        );
+    },
+
+    onLoggedIn() {
+        this.setState({loggedIn: true})
     }
 });
 
