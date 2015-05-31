@@ -12,6 +12,9 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var shell = require('gulp-shell');
 var babelify = require('babelify');
+var mocha = require('gulp-mocha');
+var babel = require('babel/register');
+
 var sourceFile = './app/scripts/app.js';
 var destFolder = './dist/scripts';
 var destFileName = 'app.js';
@@ -68,6 +71,15 @@ gulp.task('images', function () {
     return gulp.src('app/images/**/*')
         .pipe(gulp.dest('dist/images'))
         .pipe($.size());
+});
+
+gulp.task('mocha', function() {
+    return gulp.src(['test/**/*Specs.js'])
+        .pipe(mocha({
+            compilers: {
+                js: babel
+            }
+        }))
 });
 
 gulp.task('jest', function () {
