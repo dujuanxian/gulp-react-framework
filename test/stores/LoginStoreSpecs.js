@@ -9,8 +9,7 @@ import LoginStore from '../../app/scripts/stores/LoginStore'
 describe('LoginStore', function() {
     context('#onSubmit', () => {
         it('should set loggedIn true when listen loginAction submit', () => {
-            LoginAction.submit = sinon.spy();
-            LoginStore.listen(LoginAction.submit());
+            LoginAction.submit.trigger();
 
             LoginStore.loggedIn.should.be.true;
             LoginStore.trigger.should.be.called;
