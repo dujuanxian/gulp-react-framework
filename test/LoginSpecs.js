@@ -42,13 +42,17 @@ describe('Login', function() {
     context('#handleSubmit', () => {
         it('should call submit action when username and password is valid', () => {
             const loginAction = sinon.stub(LoginAction, 'submit');
+            const user = {
+                username: 'test',
+                password: 'pass'
+            };
 
-            TestUtils.Simulate.change(username.getDOMNode(), {target: {value: 'valid username'}});
-            TestUtils.Simulate.change(password.getDOMNode(), {target: {value: 'valid password'}});
+            TestUtils.Simulate.change(username.getDOMNode(), {target: {value: user.username}});
+            TestUtils.Simulate.change(password.getDOMNode(), {target: {value: user.password}});
 
             TestUtils.Simulate.submit(LoginComponent.refs.form);
 
-            loginAction.called.should.be.true;
+            loginAction.calledWith(user).should.be.true;
         });
 
         it('should show error msg when username or password is invalid', () => {

@@ -8,9 +8,9 @@ const LoginStore = Reflux.createStore({
         this.listenTo(LoginAction.submit, this.onSubmit);
     },
 
-    onSubmit() {
+    onSubmit(user) {
         this.loggedIn = true;
-        this.trigger();
+        this.trigger(user.username);
     }
 });
 

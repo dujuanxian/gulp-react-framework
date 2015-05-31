@@ -11,19 +11,22 @@ const App = React.createClass({
     ],
 
     getInitialState() {
-        return {loggedIn: false};
+        return {
+            loggedIn: false,
+            username: ''
+        };
     },
 
     render() {
         return (
             !this.state.loggedIn ?
                 <Login /> :
-                <Welcome />
+                <Welcome username={this.state.username} />
         );
     },
 
-    onLoggedIn() {
-        this.setState({loggedIn: true})
+    onLoggedIn(username) {
+        this.setState({loggedIn: true, username: username})
     }
 });
 

@@ -56,7 +56,10 @@ const Login = React.createClass({
     handleSubmit(e) {
         e.preventDefault();
         if (this.state.username.length !== 0 && this.state.password.length !== 0) {
-            LoginAction.submit();
+            LoginAction.submit({
+                username: this.state.username,
+                password: this.state.password
+            });
         } else {
             this.setState({showErrorMsg: true});
         }

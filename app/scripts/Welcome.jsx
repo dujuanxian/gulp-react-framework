@@ -3,7 +3,7 @@ import React from 'react';
 const Welcome = React.createClass({
     render() {
         return (
-            <div>Welcome!</div>
+            <div>Hi {this.props.username}, Welcome!</div>
         );
     }
 });
