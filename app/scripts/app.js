@@ -1,11 +1,12 @@
 'use strict';
 
 import React from 'react';
+import Login from './Login.jsx';
 
 let App = React.createClass({
     render() {
         return (
-            <div>somthing</div>
+            <Login/>
         )
     }
 });
